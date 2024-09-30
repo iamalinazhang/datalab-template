@@ -127,7 +127,7 @@ int test_float64_f2i(unsigned uf1, unsigned uf2) {
     unsigned long long combined_bits;
     double float_value;
     combined_bits = ((unsigned long long)uf1 << 32) | (unsigned long long)uf2;
-    *(unsigned long long *)&float_value = combined_bits;
+    *(unsigned long long*)&float_value = combined_bits;
     int int_value = (int)float_value;
     return int_value;
 }
