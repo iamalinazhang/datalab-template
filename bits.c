@@ -5,10 +5,14 @@
  *   Max ops: 7
  *   Difficulty: 1
  */
-int bitXor(int x, int y) {
-    return 2;
-}
 
+/*  Solving idea：
+ *  a=x&y;
+ *  b=(~x)&(~y);
+ */
+int bitXor(int x, int y) {
+    return (~(x&y))&(~((~x)&(~y))); 
+}
 /*
  * samesign - Determines if two integers have the same sign.
  *   0 is not positive, nor negative
@@ -25,8 +29,17 @@ int bitXor(int x, int y) {
  * Returns:
  *   1 if x and y have the same sign , 0 otherwise.
  */
-int samesign(int x, int y) {
-    return 2;
+/*  Solving idea：
+ *  handle the zero’s condition
+ *  (x!=0 && y!=0)|| (x==0 && y==0)——> !(^signbit)
+ *  else ——> 0
+ *  
+ */
+int samesign(int x, int y) {   
+    if(x&&y)
+        return !((x^y)>>31&1);
+    else
+        return !(x^y);
 }
 
 /*
@@ -37,10 +50,26 @@ int samesign(int x, int y) {
  *   Max ops: 25
  *   Difficulty: 4
  */
+/*  Solving idea：
+ *  the most left 1's bit stands for the result
+ *  111 -> 100 -> 2
+ *  100 -> 111 (v>0 so logical shift)-> 011 -> bitcount 
+ *  0111 -> 0100 -> 0011 -> bitcount
+ */
 int logtwo(int v) {
-    return 2;
+    int a,b,c,d,e = 0;
+    a=(v>0xFFFF)<<4;
+    v=v>>a;
+    b=(v>0xFF)<<3;
+    v=v>>b;
+    c=(v>0xF)<<2;
+    v=v>>c;
+    d=(v>0x3)<<1;
+    v=v>>d;
+    e= (v>0x1);
+    v=v>>e;
+    return a|b|c|d|e;
 }
-
 /*
  *  byteSwap - swaps the nth byte and the mth byte
  *    Examples: byteSwap(0x12345678, 1, 3) = 0x56341278
@@ -50,8 +79,19 @@ int logtwo(int v) {
  *    Max ops: 17
  *    Difficulty: 2
  */
+/*  Solving idea：
+ *  x=x^y;y=x^y;x=x^y;
+ *  only copy nth and mth byte -> construct x^y -> x^（x^y）=y
+ *  consider the right shift
+ */
 int byteSwap(int x, int n, int m) {
-    return 2;
+    int shift_n = n<<3;
+    int shift_m = m<<3;
+    int nbyte = (0xff<<shift_n)&x;
+    int mbyte = (0xff<<shift_m)&x;
+    int temp= ((nbyte>>shift_n)^(mbyte>>shift_m))&0xff;
+    temp = (temp<<shift_n)|(temp<<shift_m);
+    return x^temp;
 }
 
 /*
@@ -61,6 +101,9 @@ int byteSwap(int x, int n, int m) {
  *   Legal ops: << | & - + >> for while ! ~ (You can define unsigned in this function)
  *   Max ops: 30
  *   Difficulty: 3
+ */
+/*  Solving idea：
+ *  
  */
 unsigned reverse(unsigned v) {
     return 2;
@@ -74,6 +117,9 @@ unsigned reverse(unsigned v) {
  *   Max ops: 20
  *   Difficulty: 3
  */
+/*  Solving idea：
+ *  
+ */
 int logicalShift(int x, int n) {
     return 2;
 }
@@ -86,6 +132,9 @@ int logicalShift(int x, int n) {
  *   Max ops: 50
  *   Difficulty: 4
  */
+/*  Solving idea：
+ *  
+ */
 int leftBitCount(int x) {
     return 2;
 }
@@ -97,6 +146,9 @@ int leftBitCount(int x) {
  *   Legal ops: if else while for & | ~ + - >> << < > ! ==
  *   Max ops: 30
  *   Difficulty: 4
+ */
+/*  Solving idea：
+ *  
  */
 unsigned float_i2f(int x) {
     return 2;
@@ -112,6 +164,9 @@ unsigned float_i2f(int x) {
  *   Legal ops: & >> << | if > < >= <= ! ~ else + ==
  *   Max ops: 30
  *   Difficulty: 4
+ */
+/*  Solving idea：
+ *  
  */
 unsigned floatScale2(unsigned uf) {
     return 2;
@@ -130,6 +185,9 @@ unsigned floatScale2(unsigned uf) {
  *   Max ops: 60
  *   Difficulty: 3
  */
+/*  Solving idea：
+ *  
+ */
 int float64_f2i(unsigned uf1, unsigned uf2) {
     return 2;
 }
@@ -146,6 +204,9 @@ int float64_f2i(unsigned uf1, unsigned uf2) {
  *   Legal ops: < > <= >= << >> + - & | ~ ! if else &&
  *   Max ops: 30
  *   Difficulty: 4
+ */
+/*  Solving idea：
+ *  
  */
 unsigned floatPower2(int x) {
     return 2;

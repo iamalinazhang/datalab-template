@@ -290,7 +290,7 @@ def test_score(function, real_ans):
                     )
                 else:
                     print(
-                        f"Pass, great!!! name: {function_name}, point: {real_ans[function_name]}"
+                        f"Pass, great!!! name: {function_name}, point: {real_ans[function_name]}, your ops: {len(operators)}"
                     )
 
 
