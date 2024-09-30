@@ -19,5 +19,5 @@ test_rec test_set[] = {
     {"reverse", (funct_t)reverse, (funct_t)test_reverse, 1, "$", 30, 3, {{TMin, TMax}, {TMin, TMax}, {TMin, TMax}}},
     {"samesign", (funct_t)samesign, (funct_t)test_samesign, 2, ">> ! ^", 12, 2, {{TMin, TMax}, {TMin, TMax}, {TMin, TMax}}},
     {"logtwo", (funct_t)logtwo, (funct_t)test_logtwo, 1, "$", 25, 4, {{1, TMax}, {TMin, TMax}, {TMin, TMax}}},
-    {"float64_f2i", (funct_t)float64_f2i, (funct_t)test_float64_f2i, 1, "$", 40, 3, {{TMin, TMax}, {TMax, TMin}, {TMin, TMax}}},
+    {"float64_f2i", (funct_t)float64_f2i, (funct_t)test_float64_f2i, 2, "$", 40, 3, {{TMin, TMax}, {TMin, TMax}, {TMin, TMax}}},
     {"", NULL, NULL, 0, "", 0, 0, {{0, 0}, {0, 0}, {0, 0}}}};
