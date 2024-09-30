@@ -32,15 +32,17 @@ sudo apt-get remove gcc g++
 
 --------
 
-Python 编译环境，我们演示 Virtualenv 下的配置方法，如果你使用 Conda 可以自行配置类似的环境出来
+Python 编译环境已弃用，现在你不需要执行任何指令来配置，如果你第一次读到这个文档，请忽略这一部分。对于服务器用户，你不需要执行任何配置。
 
-```bash
-sudo apt-get update
-sudo apt-get install python3 python3-pip python3-venv
-python3 -m venv venv # 如果你在我们提供的服务器上进行本实验，这一步请从这里开始
-. venv/bin/activate
-pip install pycparser -i https://mirrors.aliyun.com/pypi/simple/
-```
+> Python 编译环境，我们演示 Virtualenv 下的配置方法，如果你使用 Conda 可以自行配置类似的环境出来
+> 
+> ```bash
+> sudo apt-get update
+> sudo apt-get install python3 python3-pip python3-venv
+> python3 -m venv venv # 如果你在我们提供的服务器上进行本实验，这一步请从这里开始
+> . venv/bin/activate
+> pip install pycparser -i https://mirrors.aliyun.com/pypi/simple/
+> ```
 
 --------
 
@@ -58,6 +60,22 @@ pip install pycparser -i https://mirrors.aliyun.com/pypi/simple/
 
 ```bash
 make
+```
+
+### Quick Start
+
+```bash
+# 在我们的服务器上，不需要执行这一行
+sudo apt-get update && sudo apt-get install build-essential gcc-multilib
+
+# 其中 panjd123 改成你的用户名
+git clone git@github.com:RUCICS/datalab-panjd123.git
+
+cd datalab-panjd123
+
+make
+python3 test.py
+# 然后你应该看到最后一行输出 Total Points:0 的字样
 ```
 
 ## 实验简述
@@ -118,7 +136,6 @@ int bitAnd(int x, int y) {
 ### 如何评测
 
 ```bash
-. venv/bin/activate
 python3 test.py
 ```
 

@@ -18,4 +18,4 @@ btestexplicit:
 	$(CC) $(CFLAGS) $(LIBS) -o btest bits.c btest.c decl.c tests.c 
 
 clean:
-	rm -f *.o btest fshow ishow *~
+	rm -f *.o btest fshow ishow *~ yacctab.py lextab.py
