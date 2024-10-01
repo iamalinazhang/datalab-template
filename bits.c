@@ -1,3 +1,16 @@
+/* WARNING: Do not include any other libraries here,
+ * otherwise you will get an error while running test.py
+ * You can still use printf for debugging without including
+ * <stdio.h>, although you might get a compiler warning. In general,
+ * it's not good practice to ignore compiler warnings, but in this
+ * case it's OK.
+ *
+ * Using printf will interfere with our script capturing the execution results.
+ * At this point, you can only test correctness with ./btest.
+ * After confirming everything is correct in ./btest, remove the printf
+ * and run the complete tests with test.py.
+ */
+
 /*
  * bitXor - x ^ y using only ~ and &
  *   Example: bitXor(4, 5) = 1
@@ -45,7 +58,8 @@ int samesign(int x, int y) {
 /*
  * logtwo - Calculate the base-2 logarithm of a positive integer using bit
  *   shifting. (Think about bitCount)
- *   Example: logtwo(32) = 5 (v > 0)
+ *   Note: You may assume that v > 0
+ *   Example: logtwo(32) = 5
  *   Legal ops: > < >> << |
  *   Max ops: 25
  *   Difficulty: 4
