@@ -124,11 +124,12 @@ unsigned test_float_i2f(int x) {
     return f2u(f);
 }
 int test_float64_f2i(unsigned uf1, unsigned uf2) {
-    long long int x = (uf1) << 31;
-    x = x & (uf2);
-    double y = x;
-    int r = y;
-    return r;
+    unsigned long long combined_bits;
+    double float_value;
+    combined_bits = ((unsigned long long)uf1 << 32) | (unsigned long long)uf2;
+    *(unsigned long long*)&float_value = combined_bits;
+    int int_value = (int)float_value;
+    return int_value;
 }
 int test_leftBitCount(int x) {
     int result = 0;
