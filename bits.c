@@ -6,7 +6,7 @@
  *   Difficulty: 1
  */
 
-/*  Solving idea：
+/*  Solving idea:
  *  a=x&y;
  *  b=(~x)&(~y);
  */
@@ -29,7 +29,7 @@ int bitXor(int x, int y) {
  * Returns:
  *   1 if x and y have the same sign , 0 otherwise.
  */
-/*  Solving idea：
+/*  Solving idea:
  *  handle the zero’s condition
  *  (x!=0 && y!=0)|| (x==0 && y==0)——> !(^signbit)
  *  else ——> 0
@@ -50,7 +50,7 @@ int samesign(int x, int y) {
  *   Max ops: 25
  *   Difficulty: 4
  */
-/*  Solving idea：
+/*  Solving idea:
  *  the most left 1's bit stands for the result
  *  111 -> 100 -> 2
  *  100 -> 111 (v>0 so logical shift)-> 011 -> bitcount 
@@ -79,10 +79,10 @@ int logtwo(int v) {
  *    Max ops: 17
  *    Difficulty: 2
  */
-/*  Solving idea：
+/*  Solving idea:
  *  x=x^y;y=x^y;x=x^y;
  *  only copy nth and mth byte -> construct x^y -> x^（x^y）=y
- *  consider the right shift
+ *  consider arithmatic right shift
  */
 int byteSwap(int x, int n, int m) {
     int shift_n = n<<3;
@@ -102,13 +102,22 @@ int byteSwap(int x, int n, int m) {
  *   Max ops: 30
  *   Difficulty: 3
  */
-/*  Solving idea：
- *  
+/*  Solving idea:
+ *  one by one out ,one by one in
  */
 unsigned reverse(unsigned v) {
-    return 2;
+    int count=0;
+    unsigned bit,result=0;
+    unsigned x=0xffffffff;
+    while(x){
+        result = result<<1;
+        bit = v&(1<<count);
+        result |= bit>>count;
+        x=x>>1;
+        count=count+1;
+    }
+    return result;
 }
-
 /*
  * logicalShift - shift x to the right by n, using a logical shift
  *   Examples: logicalShift(0x87654321,4) = 0x08765432
@@ -118,10 +127,14 @@ unsigned reverse(unsigned v) {
  *   Difficulty: 3
  */
 /*  Solving idea：
- *  
+ *  handle sign bit
+ *  arithmatic shift -> mask 0x 0...0(n bit)1...1 ->0x7fffffff shift n-1 -> n-1 = -1+n (consider n=0)
+ *  or (0x1<<(32-n))-1 (consider n=0,if left shift count >= width of type ,there is auto %)
+ *  or 0..0(n bit)1..11 <- 1...1(n bit)0...0 -> 0x80000000>>n<<1
  */
 int logicalShift(int x, int n) {
-    return 2;
+    int mask = ~(1<<31>>n<<1);
+    return (x>>n) & mask; 
 }
 
 /*
@@ -133,10 +146,36 @@ int logicalShift(int x, int n) {
  *   Difficulty: 4
  */
 /*  Solving idea：
- *  
+ *  construct a=leftmost(x) , eg. 0x 0...0111.111 -> construct b=leftmost( leftmost(x)^x ) -> bitcount(a^b)
+ *  or bitcount(a)-bitcount(b)
+ *  consider the condition —— left-hand (most) end of word 从最左端开始,要判断最左端是否为1
  */
 int leftBitCount(int x) {
-    return 2;
+    //int a = x|(x>>1)|(x>>2)|(x>>4)|(x>>8)|(x>>16);
+    int mask=x>>31;
+    x=x&mask;
+    int a = x|(x>>1);
+    a |= a>>2;
+    a |= a>>4;
+    a |= a>>8;
+    a |= a>>16;
+    int b = a^x;
+    //b = b|(b>>1)|(b>>2)|(b>>4)|(b>>8)|(b>>16);
+    b |= b>>1;
+    b |= b>>2;
+    b |= b>>4;
+    b |= b>>8;
+    b |= b>>16;
+    mask = 0x11111111;
+    int temp = a^b;
+    int s = temp & mask;
+    s += (temp>>1) & mask;
+    s += (temp>>2) & mask;
+    s += (temp>>3) & mask;
+    s += (s>>16);
+    mask = 0x0f0f ;
+    s = (s&mask)+(s>>4 & mask);
+    return ((s+(s>>8)) & 0x3f);
 }
 
 /*
