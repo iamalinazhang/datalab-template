@@ -17,6 +17,7 @@ int leftBitCount(int x) {
     printf("%x\n",a);
     int b = a^x;
     b |= b>>1;
+    printf("hello,error");
     b |= b>>2;
     b |= b>>4;
     b |= b>>8;
