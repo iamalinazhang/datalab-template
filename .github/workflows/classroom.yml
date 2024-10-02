@@ -27,7 +27,11 @@ jobs:
         setup-command:
         command: python3 test.py
         timeout: 10
+<<<<<<< HEAD
         max-score: 34
+=======
+        max-score: 36
+>>>>>>> 2b512fdbf42474a89e510bc8b3cdc2072820e526
     - name: Autograding Reporter
       uses: panjd123/autograding-grading-reporter@v1
       env:
