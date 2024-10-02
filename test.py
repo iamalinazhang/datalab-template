@@ -380,12 +380,8 @@ def main():
                 else:
                     print(f"{' ' *33}error{i+1}: {msg_body}")
 
-<<<<<<< HEAD
-    print(f"Total points: {total_points}")
-=======
     max_points = sum(problem_info["rating"] for problem_info in problem_infos.values())
     print(f"Total points: {total_points}/{max_points}")
->>>>>>> 2b512fdbf42474a89e510bc8b3cdc2072820e526
 
     # AutoGrader
     with open(".autograder_result", "w") as f:
