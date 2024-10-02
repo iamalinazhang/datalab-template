@@ -1,3 +1,4 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/HwtZfpI1)
 # DataLab
 
 ```
@@ -10,7 +11,7 @@
     \|_______|\|__|\|__|    \|__|  \|__|\|__|\|_______|\|__|\|__|\|_______|
 ```
 
-模板仓库：[RUC DataLab](https://github.com/RUCICS/datalab)
+RUC DataLab
 
 ## 项目编译与环境指南
 
@@ -62,7 +63,7 @@ Python 编译环境已弃用，现在你不需要执行任何指令来配置，�
 make
 ```
 
-> 如果你不懂什么是 `make`，请询问 AI 生成工具 “什么是 make，我应该在什么时候执行 make，make 的原理是什么”
+> 如果你不懂什么是 `make`，请询问 AI 生成工具 “什么是 make，我应该在什么时候执行 make，，make 的原理是什么”
 
 ### Quick Start
 
